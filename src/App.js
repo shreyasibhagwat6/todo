@@ -6,6 +6,17 @@ import { ChakraProvider, extendTheme, theme as chakraTheme, } from "@chakra-ui/r
 function App () {
     const [todo, setTodo] = useState([]);
 
+    const editTodoById = (id, newTodo) => {
+        const updatedTodo = todo.map((todo) => {
+            if (todo.id === id) {
+                return {...todo, task: newTodo}
+            }
+
+            return todo;
+        });
+        setTodo(updatedTodo);
+    };
+    
     const deleteTodoById = (id) => {
         const updatedTodo = todo.filter((todo) => {
             return todo.id !== id;
@@ -28,7 +39,7 @@ function App () {
         <ChakraProvider>
             <div>
                 <AddTodo onCreate={createTodo}/>
-                <TodoList todo={todo} onDelete={deleteTodoById}/>
+                <TodoList todo={todo} onDelete={deleteTodoById} onEdit={editTodoById}/>
             </div>
         </ChakraProvider>
 )}
