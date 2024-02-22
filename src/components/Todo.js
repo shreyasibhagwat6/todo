@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Container } from '@chakra-ui/react';
 import EditTodo from "./EditTodo";
 
 function Todo ({ todo, onDelete, onEdit }) {
@@ -23,17 +24,20 @@ function Todo ({ todo, onDelete, onEdit }) {
         content = <EditTodo onSubmit={handleSubmit} todo={todo} />
     }
     
-    return <div>
-        {content}
+    return (
+    <Container maxW='container.sm' bg='green.400' color='#262626'>
         <div>
-            <Button colorScheme="teal" onClick={handleEditClick}>
-                Edit
-            </Button>
-           <Button colorScheme="teal" onClick={handleDeleteClick}>
-                Remove
-            </Button> 
+            {content}
+            <div>
+                <Button colorScheme="teal" onClick={handleEditClick}>
+                    Edit
+                </Button>
+            <Button colorScheme="teal" onClick={handleDeleteClick}>
+                    Remove
+                </Button> 
+            </div>
         </div>
-        </div>
-}
+    </Container>
+)}
 
 export default Todo;

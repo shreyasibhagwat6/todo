@@ -20,7 +20,7 @@ function AddTodo ({ onCreate }) {
     return (
     <div>
         <form onSubmit={handleSubmit}>
-            <label>Add a task</label>
+            <label>Shreyasi's to-do list</label>
             {/* <input value={task} onChange={handleChange}> */}
             <Input value={task} onChange={handleChange} placeholder="Add a task"/>
             <button>
