@@ -1,15 +1,31 @@
 import AddTodo from "./components/AddTodo";
 import TodoList from "./components/TodoList";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { ChakraProvider, extendTheme, theme as chakraTheme, } from "@chakra-ui/react"; 
 
 function App () {
     const [todo, setTodo] = useState([]);
 
-    const editTodoById = (id, newTodo) => {
+    const fetchTodo = async () => {
+        const response = await axios.get('http://localhost:3001/todo')
+
+        setTodo(response.data);
+    };
+
+    useEffect (()=>{
+        fetchTodo();
+    }, []);
+
+    const editTodoById = async (id, newTodo) => {
+        const response = await axios.put(`http://localhost:3001/todo/${id}`,
+        {
+            task: newTodo,
+        });
+
         const updatedTodo = todo.map((todo) => {
             if (todo.id === id) {
-                return {...todo, task: newTodo}
+                return {...todo, ...response.data}
             }
 
             return todo;
@@ -17,24 +33,29 @@ function App () {
         setTodo(updatedTodo);
     };
     
-    const deleteTodoById = (id) => {
+    const deleteTodoById = async (id) => {
+        await axios.delete(`http://localhost:3001/todo/${id}`);
+
         const updatedTodo = todo.filter((todo) => {
             return todo.id !== id;
         });
 
         setTodo(updatedTodo);
     }
-    
-    const createTodo = (task) => {
-        const id = Math.round(Math.random()*9999);
+
+    const createTodo = async (task) => {
+        const response = await axios.post('http://localhost:3001/todo', {
+            task: task,
+        });
+
         const updatedTodo = [
             ...todo, 
-            { id: id, task: task}
+            response.data
         ];
         
         setTodo(updatedTodo);
     }
-
+    
     return (
         <ChakraProvider>
             <div>

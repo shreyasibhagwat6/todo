@@ -1,0 +1,25 @@
+GET http://localhost:3001/todo HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:3001/todo HTTP/1.1
+Content-Type: application/json
+
+{
+    "task": "do laundry"
+}
+
+###
+
+PUT http://localhost:3001/todo/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "task": "do Ava's laundry"
+}
+
+###
+
+DELETE http://localhost:3001/todo/1 HTTP/1.1
+Content-Type: application/json
