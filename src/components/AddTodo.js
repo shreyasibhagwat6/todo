@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, ButtonGroup } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 
 function AddTodo ({ onCreate }) {
 
@@ -20,11 +21,10 @@ function AddTodo ({ onCreate }) {
     return (
     <div>
         <form onSubmit={handleSubmit}>
-            <label>Shreyasi's to-do list</label>
-            {/* <input value={task} onChange={handleChange}> */}
-            <Input value={task} onChange={handleChange} placeholder="Add a task"/>
+            <Heading margin='2'>Shreyasi's to-do list</Heading>
+            <Input h='35px' margin='2' value={task} onChange={handleChange} placeholder="Add a task"/>
             <button>
-                <Button colorScheme="teal">
+                <Button h='30px' margin='2' colorScheme="teal">
                     Add
                 </Button>
             </button>

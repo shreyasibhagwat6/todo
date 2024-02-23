@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { Button, ButtonGroup } from '@chakra-ui/react';
-import { Container } from '@chakra-ui/react';
+import { Button, ButtonGroup, Divider } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import EditTodo from "./EditTodo";
 
 function Todo ({ todo, onDelete, onEdit }) {
     const [showEdit, setShowEdit] = useState(false);
+    
+    const handleCompleteClick = () => {
+        onDelete(todo.id)
+    }
     
     const handleEditClick = () => {
         setShowEdit(!showEdit);
@@ -25,19 +29,22 @@ function Todo ({ todo, onDelete, onEdit }) {
     }
     
     return (
-    <Container maxW='container.sm' bg='green.400' color='#262626'>
-        <div>
-            {content}
+        <Box margin='2' padding='2' h='80px' bg='yellow.200'>
             <div>
-                <Button colorScheme="teal" onClick={handleEditClick}>
-                    Edit
-                </Button>
-            <Button colorScheme="teal" onClick={handleDeleteClick}>
-                    Remove
-                </Button> 
+                {content}
+                <div>
+                    <Button h='30px' margin='2' colorScheme="teal" onClick={handleEditClick}>
+                        Edit
+                    </Button>
+                    <Button h='30px' margin='2' colorScheme="teal" onClick={handleCompleteClick}>
+                        Complete
+                    </Button>
+                    <Button h='30px' margin='2' colorScheme="teal" onClick={handleDeleteClick}>
+                        Remove
+                    </Button> 
+                </div>
             </div>
-        </div>
-    </Container>
+        </Box>
 )}
 
 export default Todo;
