@@ -1,3 +1,12 @@
+#starting the react script
+
+Enter npm start in the terminal to run
+
+#starting the json server
+
+Enter npx json-server --watch db.json --port 3001
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -14,7 +14,6 @@ function AddTodo ({ onCreate }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         onCreate(task);
-        console.log(task);
         setTask('');
     }
 

@@ -1,6 +1,8 @@
 import AddTodo from "./components/AddTodo";
 import TodoList from "./components/TodoList";
+import LoginPage from "./pages/LoginPage";
 import axios from "axios";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ChakraProvider, extendTheme, theme as chakraTheme, } from "@chakra-ui/react"; 
 
@@ -9,7 +11,6 @@ function App () {
 
     const fetchTodo = async () => {
         const response = await axios.get('http://localhost:3001/todo')
-
         setTodo(response.data);
     };
 
@@ -57,12 +58,19 @@ function App () {
     }
     
     return (
-        <ChakraProvider>
-            <div>
-                <AddTodo onCreate={createTodo}/>
-                <TodoList todo={todo} onDelete={deleteTodoById} onEdit={editTodoById}/>
-            </div>
-        </ChakraProvider>
+        <Router>
+            <ChakraProvider>
+                <div>
+                    <LoginPage />
+                    <Switch>
+                        <Route path="/home">
+                            <AddTodo onCreate={createTodo}/>
+                            <TodoList todo={todo} onDelete={deleteTodoById} onEdit={editTodoById}/>
+                        </Route>
+                    </Switch>
+                </div>
+            </ChakraProvider>
+        </Router>
 )}
 
 export default App;
