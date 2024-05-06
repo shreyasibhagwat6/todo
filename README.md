@@ -4,7 +4,9 @@ Enter npm start in the terminal to run
 
 #starting the json server
 
-Enter npx json-server --watch db.json --port 3001
+npx json-server --watch db.json --port 3001
+
+# currently running on the db.json
 
 
 # Getting Started with Create React App
