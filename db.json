@@ -1,12 +1,8 @@
 {
   "todo": [
     {
-      "task": "laundry - Ava",
+      "task": "laundry",
       "id": 1
-    },
-    {
-      "task": "grocery shopping",
-      "id": 2
     }
   ]
 }
